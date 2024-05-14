@@ -39,6 +39,8 @@ def log_process (msg):
 
 
 def extract(url, table_attribs):
+    '''This function extracts the tabular information from the given URL under the heading By Market Capitalization by using bs4 and saves it to a data frame.'''
+
     df = pd.DataFrame(columns=table_attribs)
     page = requests.get(url).text
     data = BeautifulSoup(page, 'html.parser')
@@ -85,7 +87,8 @@ def load_to_csv(df, output_path):
 
 
 def load_to_db(df, sql_connection, table_name):
- 
+ '''This function loads the transformed data frame to an SQL database server as a table.'''
+
  df.to_sql(table_name, sql_connection , if_exists='replace', index=False)
 
 
@@ -96,6 +99,8 @@ def run_query(query_statement, sql_connection):
     for query in query_statements:
         print(query)
         print(pd.read_sql(query, sql_connection), '\n')
+
+'''Here, I call the relevant functions in the correct order to complete the project.'''
 
 log_process('Preliminaries complete. Initiating ETL process.')
 
