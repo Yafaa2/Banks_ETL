@@ -88,7 +88,6 @@ def load_to_db(df, sql_connection, table_name):
  
  df.to_sql(table_name, sql_connection , if_exists='replace', index=False)
 
-#ana esy aly
 
 def run_query(query_statement, sql_connection):
     ''' This function runs the query on the database table and
